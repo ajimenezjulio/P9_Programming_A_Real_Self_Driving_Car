@@ -5,6 +5,9 @@
 
 This is the project repo for the final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9). 
 
+<img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/iOS13-Course-Syllabus.gif">
+</p>
+
 ## Goal
 This project aims to drive a real car by following the same architecture of nodes such as the route follower, classification of traffic lights and control signals for acceleration, brake and steering wheel rotation. The functionality was implemented using Robot Operative System (ROS) as the main framework node development and communication.
 
@@ -93,7 +96,8 @@ roslaunch launch/site.launch
 ### Udacity's Car (Carla) Architecture
 Carla is the custom automobile that Udacity has converted into a self-driving car. It's self-driving system is broken down into four major sub-systems: Sensors, Perception, Planning and Control as presented below.
 
-IMG ***********************************
+<img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/architecture.png">
+</p>
 
 **Sensors**
 Includes everything needed to understand its surroundings and location including cameras, lidar, GPS, radar, and IMU.
@@ -141,3 +145,7 @@ The traffic light classification model is based on the pre-trained on the COCO d
 
 **Classification**
 The classification output has four categories: Red, Green, Yellow and off. To simplify, the final output will be Red or Non-Red, that is only the Red will be classified as `TrafficLight.RED`, and the other cases will be classified as `TrafficLight.GREEN`.
+
+| <img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/Screen%20Shot%202020-10-08%20at%2010.39.58%20AM.png"> | <img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/Screen%20Shot%202020-10-08%20at%2010.40.08%20AM.png"> |
+|---|---|
+| <img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/Screen%20Shot%202020-10-08%20at%2010.40.24%20AM.png"> | <img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/Screen%20Shot%202020-10-08%20at%2010.40.41%20AM.png"> |
