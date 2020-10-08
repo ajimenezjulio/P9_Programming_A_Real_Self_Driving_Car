@@ -89,8 +89,6 @@ roslaunch launch/site.launch
 ```
 5. Confirm that traffic light detection works on real life images
 
----
-
 ## Project Overview
 
 ### Udacity's Car (Carla) Architecture
@@ -134,9 +132,33 @@ Path planning is broken down into for sub-components: route planning, prediction
 **Control**
 The control component takes trajectory outputs and processes them with a controller algorithm like PID or MPC to adjust the control inputs for smooth operation of the vehicle.
 
+### ROS Architechture
+The ROS Architecture consists of different nodes (written in Python or C++) that communicate with each other via ROS messages. 
+
+<img src="https://github.com/ajimenezjulio/P9_Programming_A_Real_Self_Driving_Car/blob/master/imgs/ros_architechture.png">
+</p>
+
+**Node Design**
+Some of the crucial nodes developed in this project are waypoint updater(`waypoint_updater.py`), traffic light detector (`tl_detector.py`) and the drive by wire node (`dbw_node.py`).
+
+**Waypoint Updater**
+The waypoint updater node takes a central role in the planning task because it determines which waypoints the car should follow. Some functions of this node are:
+- `init-function`: Defines the attributes of the class and determines which topics the class subscribes to and which ones it publishes on. 
+- `callback functions`: They are invoked repeatedly by the subscribers in the init-function. Repeatedly called are the base waypoints (output of waypoint loader), car's pose (simulator / car) and traffic waypoint (output of tl_detector).
+- `decelerate_waypoints-function` which incorporates a square-root shaped deceleration towards a predetermined stopline location in case of red traffic lights. 
+
+**Traffic Light Detection**
+The traffic light detector is responsible for processing raw images from the camera and detect traffic lights, its role is to publish the waypoint where a traffic light is detected along with the state of the respective light.
+- Includes the subscriptions to the current position base waypoints, the given traffic light array with the ground-truth coordinates of the traffic lights, along with the identified color of the traffic light (for simulator). 
+- The color of the traffic light is the output of the traffic light classifier, the ANN model is explained in the further section.
+- The topic `image_color` gets updated by the callback `image_cb`, which itself calls via the `process_traffic_lights()` function, who in turn utilizes the function `get_light_state()` that receives the traffic light classification. 
+- Eventually, the waypoint to stop at for any upcoming identified red traffic light is published in this subroutine.
+
+**Drive-By-Wire (DBW) Node**
+The third node written by us is the `dbw_node` which is responsible for driving the car. It subscribes to a twist controller which outputs throttle, brake and steering values with the help of a `PID-controller` and `Lowpass filter`. The dbw node directly publishes throttle, brake and steering commands for the car/simulator, in case `dbw_enabled` is set to `True`.
+
 
 ### ANN Model
-
 **Model**
 The traffic light classification model is based on the pre-trained on the COCO dataset model "faster_rcnn_resnet101_coco" from [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). Using the [Tensorflow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection), the simulator data model and real data model were trained. The models are available [here](https://drive.google.com/drive/folders/1I7Ns8ZYgLdNgZfrUlwc2_X-82oy_ASlb?usp=sharing).
 
