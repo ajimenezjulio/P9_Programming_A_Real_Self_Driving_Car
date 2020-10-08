@@ -9,7 +9,7 @@ This is the project repo for the final project of the Udacity Self-Driving Car N
 </p>
 
 ## Goal
-This project aims to drive a real car by following the same architecture of nodes such as the route follower, classification of traffic lights and control signals for acceleration, brake and steering wheel rotation. The functionality was implemented using Robot Operative System (ROS) as the main framework node development and communication.
+This project aims to drive a real car by following the same architecture of nodes such as the route follower, classification of traffic lights and control signals for acceleration, brake and steering wheel rotation. The functionality was implemented using Robot Operative System (ROS) as the main framework for node and communication development.
 
 ## Native Installation
 
